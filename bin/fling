@@ -47,7 +47,7 @@ def decrypt(data, secret):
         return fernet.decrypt(data)
         
     except InvalidToken:
-        print("Failed to decrypt message", file=sys.stderr) # usually because the stream was empty or interrupted
+        print("Failed to decrypt message", file=sys.stderr)
         sys.exit(1)
 
 
@@ -95,7 +95,7 @@ def receive(secret):
 
         ciphertext = consume(receiver.recv)
         plaintext = decrypt(ciphertext, secret)
-        sys.stdout.buffer.write(ciphertext)
+        sys.stdout.buffer.write(plaintext)
 
         receiver.close()
 
